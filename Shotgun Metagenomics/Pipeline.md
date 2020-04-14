@@ -53,34 +53,18 @@ This is written for samples taken from a rhesus macaque. If using samples from a
 
 **Output (in the ./decon directory):** Read1.paired.decon.fastq.gz Read1.unpaired.decon.fastq.gz Read2.paired.decon.fastq.gz Read2.unpaired.decon.fastq.gz
 
-
 ```bowtie2 -q -p 48 -x /rhome/rhoadesn/bigdata/Shotgun_Metagenomics/NX_metagenomes_9_6_2017/hts.igb.uci.edu/rhoadesn17090685/4R040-L8/working_names/raw/db/Macaca_mulatta/Ensembl/Mmul_1/Sequence/Bowtie2Index/genome -1 ./trimmed/${ID}_paired_trim_R1.fastq.gz -2 ./trimmed/${ID}_paired_trim_R2.fastq.gz -U ./trimmed/${ID}_unpaired_trim_R1.fastq.gz -U ./trimmed/${ID}_unpaired_trim_R2.fastq.gz --quiet --un-conc-gz ./decon/${ID}.paired.decon.fastq.gz --un-gz ./decon/${ID}.unpaired.decon.fastq.gz 1> ${ID}_host.sam 2> ${ID}.alignment_stats.txt```
 
-#  **Remove Sam file because we don't really care about the host genome alignment**
+##  **Step2a: Remove Sam file because we don't really care about the host genome alignment and the file is large**
 ```rm ${ID}_host.sam```
 
-# **Concatanate the QC and decontaminated sequence files**
+# **Step3: Concatanate the QC and decontaminated sequence files**
+Some downstream analysis don't care about paired end reads and work best with a single concatenated file for each sample.
+
+**Input:** Read1.paired.decon.fastq.gz Read1.unpaired.decon.fastq.gz Read2.paired.decon.fastq.gz Read2.unpaired.decon.fastq.gz
+
+**Output (in the ./concat directory):** SampleID_concat.fastq.gz
+
 ```cat ./decon/${ID}.paired.decon.fastq.1.gz ./decon/${ID}.paired.decon.fastq.2.gz ./decon/${ID}.paired.decon.fastq.2.gz >> ./concat/${ID}_concat.fastq.gz```
 
-# **Run humann2:**
 
-**Metagenomic Phylogenetic Analysis:**
-```module load metaphlan2``` 
-
-**Shortread aligner:**
-```module load bowtie2```
-
-**DIAMOND is a sequence aligner for protein and translated DNA searches:**
-```module load diamond```
-
-**MinPath (Minimal set of Pathways) is a parsimony approach for biological pathway reconstructions using protein family predictions:**
-```module load minpath```
-
-**Coding module:**
-```module unload python``` 
-
-**Qiime2 is microbiome bioinformatics platform:**
-```module load qiime2/2017.8``` 
-
-**Coding language module:**  
-```module load perl```
