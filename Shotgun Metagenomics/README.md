@@ -1,4 +1,6 @@
-# **Required Modules:**  
+# **Basic read processing**
+
+## **Required Modules:**  
 - **Trimmomatic: A flexible read trimming tool for Illumina NGS data:**
 - **Bowtie2 is a short read aligner:** 
 
@@ -47,4 +49,47 @@ Some downstream analysis don't care about paired end reads and work best with a 
 
 ```cat ./decon/${ID}.paired.decon.fastq.1.gz ./decon/${ID}.paired.decon.fastq.2.gz ./decon/${ID}.paired.decon.fastq.2.gz >> ./concat/${ID}_concat.fastq.gz```
 
+# **Functional and taxonomic annotation for short reads**
+This will run the basic humann2 pipline. Using the chocophlan and UniRef50 database. This works best for rhesus samples but please read up on the best databases to use for your samples. UniRef90 is the default for human gut microbiome.
+More info and a full tutorial can be found at [Humann2 resource](https://bitbucket.org/biobakery/biobakery/wiki/humann2)
+
+You will also run metaphlan2 which assigns taxonomy of short reads based on single copy marker genes.
+More info and a tutorial can be found here [Metaphlan2 resource](https://bitbucket.org/biobakery/biobakery/wiki/metaphlan2)
+
+## **Run humann2:**
+
+## **Required Modules:**  
+- **Metaphlan2: Metagenomic Phylogenetic Analysis:**
+- **Bowtie2 is a short read aligner:**
+- **DIAMOND is a sequence aligner for protein and translated DNA searches:**
+- **MinPath (Minimal set of Pathways) is a parsimony approach for biological pathway reconstructions using protein family predictions:**
+- **Python Coding language: This will clash with running humann2**
+- **Qiime2 is microbiome bioinformatics platform: Humann2 is currenly within this environment**
+```module load metaphlan2``` 
+
+```module load bowtie2```
+
+```module load diamond```
+
+```module load minpath```
+
+```module unload python``` 
+
+```module load qiime2/2017.8``` 
+
+## **Step1: Run humann2**
+
+**Input (a single .fq.gz file that contains all QC'd reads for a sample):** SampleID_concat.fastq.gz
+**Otuput (there are 3 output file for gen abundance pathway abundance and pathway coverage):**
+
+```humann2 -i ./concat/${ID}.fastq.gz -o ./outhumann --nucleotide-database /rhome/rhoadesn/bigdata/chocophlan/ --protein-database /rhome/rhoadesn/bigdata/uniref50/ --metaphlan-options=--ignore_viruses --threads 60 --remove-temp-output --o-log ./outhumann/${ID}.txt```
+
+## **Step2: Run humann2**
+This will only output species level taxonomy and also excludes viruses. See Metaphlan tutorial above to if you need other taxonomy levels.
+**Input (a single .fq.gz file that contains all QC'd reads for a sample):** SampleID_concat.fastq.gz
+**Otuput (a single text file):**
+
+
+# **Genome assembly**
+This section will assemble genomes from 
 
