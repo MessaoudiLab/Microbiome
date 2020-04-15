@@ -1,31 +1,11 @@
 # **Required Modules:**  
-**Trimmomatic: A flexible read trimming tool for Illumina NGS data:**
-
-**BBMap is a splice-aware global aligner for DNA and RNA sequencing reads:** 
-
-**Bowtie2 is a short read aligner:** 
-
-**MetaBAT is a robust statistical framework for reconstructing genomes from metagenomic data:** 
-
-**SPAdes is a genome assembly algorithm:** 
-
-**Burrows-Wheeler Sequence aligner:** 
-
-**Samtools is a suite of programs for interacting with high-throughput sequencing data:**
+- **Trimmomatic: A flexible read trimming tool for Illumina NGS data:**
+- **Bowtie2 is a short read aligner:** 
 
 ```module load trimmomatic/0.36```
 
-```module load BBMap/38.16```
-
 ```module load bowtie2/2.2.9```
 
-```module load metabat/0.32.4```
-
-```module load SPAdes```
-
-```module load bwa/0.7.17```
-
-```module load samtools/1.9``` 
 # **A few notes before starting**
 ### **Before starting make the following directories to stay organized**
 ```mkdir trimmed decon concat```
