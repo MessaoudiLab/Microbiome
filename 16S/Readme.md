@@ -4,12 +4,33 @@ And follows the Moving Pictures tutorial that can be found here. [Moving Picutre
 QIIME2 has very good documentation and almost all questions can be answered here. [QIIME2](https://qiime2.org/)
 
 #### **The scripts I have added here are to run QIIME2 analysis in the UCR cluster slurm framework.**
+This allow the user to run th
 
-## *Importing Data*
+## *Step1: Importing Data*
+To run this batch script you will need to create a directory with all of you sequence files in a fastq.gz. 
+
+Unless you edit the script the directory must be called **seqs**
+
+To use this script file names must be in the Casava format ex. SampleID_L001_R1_001.fastq.gz
+
+For importing other formats of data see. [QIIME2 importing data](https://docs.qiime2.org/2019.10/tutorials/importing/)
+
 
 ```
-
+Qiime2_import_dada.sh
 ```
+Input: Directory of sequencing files called seqs
+
+Output1: demux-paired-end.qza
+
+Output2: demux.qzv
+
+**If you are having trouble and want to run this script outside of the queueing system see section 2**
+
+
+## **Step2: Sequence quality control and feature table construction**
+In this step we use the program dada2 but there are other options. See QIIME2 documentation for other options and troubleshooting.
+
 
 
 ## **Getting into a QIIME environment:**  
