@@ -17,6 +17,6 @@ source activate qiime2-2019.10
 
 qiime dada2 denoise-paired --i-demultiplexed-seqs demux-paired-end.qza --o-representative-sequences rep-seqs-dada2.qza --o-table table-dada2.qza --p-trim-left-f 1 --p-trim-left-r 1 --p-trunc-len-f 240 --p-trunc-len-r 240 --p-n-threads 60 --o-denoising-stats stats-dada2.qza
 
-qiime metadata tabulate --m-input-file stats-dada2-cv-240-200.qza --o-visualization stats-dada2-240-200.qzv
+qiime feature-table summarize --i-table table-dada2.qza --o-visualization table.qzv 
 
 qiime phylogeny align-to-tree-mafft-fasttree --i-sequences rep-seqs-dada2.qza --o-alignment aligned-rep-seqs.qza --o-masked-alignment masked-aligned-rep-seqs.qza --o-tree unrooted-tree.qza --o-rooted-tree rooted-tree.qza --p-n-threads 60
