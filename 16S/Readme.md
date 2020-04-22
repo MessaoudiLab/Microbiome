@@ -29,21 +29,31 @@ Output2: demux.qzv
 
 
 ## **Step2: Sequence quality control, feature table construction, and tree building**
-This script cobines multiple steps of the qiime pipeline.
+This script combines multiple steps of the qiime pipeline.
 In this step we use the program dada2 but there are other options. See QIIME2 documentation for other options and troubleshooting.
+It will take a while so I suggest you use the batch script.
 
 ```
 Qiime2_dada_and_tree.sh
 ```
 
 ## **Step3: Assign taxonomy**
-This script cobines multiple steps of the qiime pipeline.
-In this step we use the program dada2 but there are other options. See QIIME2 documentation for other options and troubleshooting.
+This script assigns taxonomy using the Silva release 132 99% OTU database.
+It will take a while so I suggest you use the batch script.
 
 
 ```
 Qiime2_assign_taxonomy.sh
 ```
+
+The rest of the qiime2 steps take far less time and resources and can be ran in an interactive environment.
+## **First you need to enter and interactive node**
+Do not run anything on a head node.
+
+```
+srun --x11 --mem=24gb --cpus-per-task 10 --ntasks 1 --time 24:00:00 --pty bash -l
+```
+
 ## **Getting into a QIIME environment:**  
 This is just a little trick to make sure that our cluster and QIIME2 are speaking the same language. 
 Then entering the QIIME2 virtual environment
@@ -54,6 +64,22 @@ export LANG=en_US.utf-8
 conda init bash
 source activate qiime2-2019.10
 ```
+## **Generating diversity metrics:**
+
+```
+qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-table table-dada2.qza --p-sampling-depth 10000 --m-metadata-file sample-metadata.txt --output-dir core-metrics-results
+```
+## **Making taxa bar plots:**
+
+```
+qiime taxa barplot 
+--i-table table-dada2.qza 
+--i-taxonomy taxonomy.qza 
+--m-metadata-file sample-metadata.txt 
+--o-visualization taxa-bar-plots.qzv
+````
+
+
 
 ## **Importing data**
 >Paired End
