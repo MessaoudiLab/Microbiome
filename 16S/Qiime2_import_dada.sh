@@ -10,15 +10,6 @@
 #SBATCH --mem-per-cpu=2gb
 #SBATCH --cpus-per-task 60
 
-
-#module load trimmomatic/0.36
-#module load BBMap/38.16
-#module load bowtie2/2.2.9
-#module load metabat/0.32.4
-#module load SPAdes
-#module load bwa/0.7.17
-#module load samtools/1.9
-
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 conda init bash
