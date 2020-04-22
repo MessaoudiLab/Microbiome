@@ -72,32 +72,7 @@ qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-tabl
 ## **Making taxa bar plots:**
 
 ```
-qiime taxa barplot 
---i-table table-dada2.qza 
---i-taxonomy taxonomy.qza 
---m-metadata-file sample-metadata.txt 
---o-visualization taxa-bar-plots.qzv
+qiime taxa barplot --i-table table-dada2.qza --i-taxonomy taxonomy.qza --m-metadata-file sample-metadata.txt --o-visualization taxa-bar-plots.qzv
 ````
 
 
-
-## **Importing data**
->Paired End
-```qiime tools import 
---type 'SampleData[PairedEndSequencesWithQuality]'   
---input-path ./seqs/   
---input-format CasavaOneEightSingleLanePerSampleDirFmt   
---output-path demux-pairedend.qza```
-
->Single end
-
-
-```module load trimmomatic/0.36```
-
-```module load bowtie2/2.2.9```
-
-## **A few notes before starting**
-### **Before starting make the following directories to stay organized**
-```mkdir trimmed decon concat```
-
-All scripts should be ran from within a single directory, and they will write output to the proper place.
