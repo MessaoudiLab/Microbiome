@@ -4,7 +4,7 @@ And follows the Moving Pictures tutorial that can be found here. [Moving Picutre
 QIIME2 has very good documentation and almost all questions can be answered here. [QIIME2](https://qiime2.org/)
 
 #### **The scripts I have added here are to run QIIME2 analysis in the UCR cluster slurm framework.**
-This allow the user to run th
+This allow the user to run scripts in the background without having to wait for resources.
 
 ## *Step1: Importing Data*
 To run this batch script you will need to create a directory with all of you sequence files in a fastq.gz. 
@@ -28,11 +28,22 @@ Output2: demux.qzv
 **If you are having trouble and want to run this script outside of the queueing system see section 2**
 
 
-## **Step2: Sequence quality control and feature table construction**
+## **Step2: Sequence quality control, feature table construction, and tree building**
+This script cobines multiple steps of the qiime pipeline.
+In this step we use the program dada2 but there are other options. See QIIME2 documentation for other options and troubleshooting.
+
+```
+Qiime2_dada_and_tree.sh
+```
+
+## **Step3: Assign taxonomy**
+This script cobines multiple steps of the qiime pipeline.
 In this step we use the program dada2 but there are other options. See QIIME2 documentation for other options and troubleshooting.
 
 
-
+```
+Qiime2_assign_taxonomy.sh
+```
 ## **Getting into a QIIME environment:**  
 This is just a little trick to make sure that our cluster and QIIME2 are speaking the same language. 
 Then entering the QIIME2 virtual environment
