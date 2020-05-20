@@ -65,14 +65,14 @@ conda init bash
 source activate qiime2-2019.10
 ```
 ## **Generating diversity metrics:**
-
+You may need to edit the sampling depth number based on your study.
 ```
 qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-table table-dada2.qza --p-sampling-depth 10000 --m-metadata-file sample-metadata.txt --output-dir core-metrics-results
 ```
 ## **Making taxa bar plots:**
 
 ```
-qiime taxa barplot --i-table table-dada2.qza --i-taxonomy taxonomy.qza --m-metadata-file sample-metadata.txt --o-visualization taxa-bar-plots.qzv
+qiime taxa barplot --i-table ./core-metrics-results/rarified-table.qza --i-taxonomy taxonomy.qza --m-metadata-file sample-metadata.txt --o-visualization taxa-bar-plots.qzv
 ````
 
 
