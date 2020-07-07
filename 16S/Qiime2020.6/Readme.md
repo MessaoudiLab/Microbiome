@@ -1,4 +1,4 @@
-# **QIIME2 Updated 4/21/20*
+# **QIIME2 Updated 7/7/20**
 This pipeline is based on QIIME2 2020.6
 And follows the Moving Pictures tutorial that can be found here. [Moving Picutres Tutorial](https://docs.qiime2.org/2020.6/tutorials/moving-pictures/)
 QIIME2 has very good documentation and almost all questions can be answered here. [QIIME2](https://qiime2.org/)
